@@ -96,6 +96,28 @@
   </div>
 
 <script>
+  const inbox = document.querySelectorAll('.inbox');
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  let shift = false;
+  let lastCheckBox = null;
+
+  document.addEventListener('keyup', e => {if(e.key === 'Shift') shift = false});
+  document.addEventListener('keydown', e => {if(e.key === 'Shift') shift = true});
+  checkboxes.forEach( (checkbox, i) => checkbox.addEventListener('click', (e) => {
+    if(shift){ 
+      let lowest = lastCheckBox <= i ? lastCheckBox : i;
+      let highest = lastCheckBox <= i ? i : lastCheckBox;
+      for(let n = lowest; n <= highest; n++){
+        checkboxes[n].checked = true;
+      }
+      lastCheckBox = i;
+    } else if(!shift){
+      lastCheckBox = i;
+    } else {
+      return;
+    }
+  }))
 </script>
+
 </body>
 </html>
