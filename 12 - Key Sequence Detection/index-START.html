@@ -7,11 +7,19 @@
 </head>
 <body>
 <script>
-  input = [];
-  secretCode = 'nika';
+  let input = [];
+  const secretCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
 
-  document.addEventListener('keypress', () => {
-    
+  document.addEventListener('keydown', (e) => {
+    input.push(e.keyCode);
+    input.splice(-secretCode.length - 1, input.length - secretCode.length);
+    console.log(input);
+    if(input.length === secretCode.length && input.every((input, i) => {
+      return parseInt(input) === parseInt(secretCode[i]);
+    })){
+      console.log('win');
+      cornify_add();
+    };
   });
 
 </script>
