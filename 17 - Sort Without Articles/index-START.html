@@ -48,8 +48,21 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
-//start code
+const list = document.getElementById('bands');
 
+function strip(word){
+  return word.replace(/^(a |the |an )/i, '');
+}
+
+const sorted = bands.sort((band1, band2) => (
+  strip(band1) > strip(band2) ? 1 : -1
+));
+
+sorted.map(band => {
+  let li = document.createElement('li');
+  li.innerText = band;
+  list.append(li);
+});
 
 </script>
 
