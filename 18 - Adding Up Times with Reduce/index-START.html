@@ -183,9 +183,20 @@
   </ul>
 <script>
   //start
-  const videos = document.querySelector('videos');
+  const videos = document.querySelector('.videos');
+  let totalMinutes = 0;
+  let totalSeconds = 0;
+  [...videos.children].forEach( video => {
+    let time = video.dataset.time.split(':');
+    totalMinutes += parseInt(time[0]);
+    totalSeconds += pagarseInt(time[1]);
+  })
 
-  )
+  totalMinutes += Math.floor(totalSeconds / 60);
+  totalSeconds = totalSeconds % 60;
+
+  console.log(`${totalMinutes}:${totalSeconds}`);
+
 </script>
 </body>
 </html>
