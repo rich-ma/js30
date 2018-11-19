@@ -189,7 +189,7 @@
   [...videos.children].forEach( video => {
     let time = video.dataset.time.split(':');
     totalMinutes += parseInt(time[0]);
-    totalSeconds += pagarseInt(time[1]);
+    totalSeconds += parseInt(time[1]);
   })
 
   totalMinutes += Math.floor(totalSeconds / 60);
