@@ -26,16 +26,26 @@
       .map(result => result.transcript)
       .join('');
 
-      console.log(transcript);
-      p.textContent = transcript;
+      const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+      p.textContent = poopScript;
       if(e.results[0].isFinal){
         p = document.createElement('p');
         words.appendChild(p);
       };
+
+    if(e.results[0].isFinal && transcript.includes('open YouTube')){
+          window.open("https://www.youtube.com","_blank");
+    };
+
+    if(e.results[0].isFinal && transcript.includes('search YouTube for')){
+      let search = transcript.split('search YouTube for ');
+      search[1] = search[1].split(' ').join('+');
+      console.log(search[1]);
+      window.open(`https://www.youtube.com/results?search_query=${search[1]}`,`_blank`);
+    };
   });
 
   recognition.addEventListener('end', recognition.start);
-
   recognition.start();
 </script>
 
