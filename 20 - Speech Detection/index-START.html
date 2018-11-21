@@ -40,7 +40,6 @@
     if(e.results[0].isFinal && transcript.includes('search YouTube for')){
       let search = transcript.split('search YouTube for ');
       search[1] = search[1].split(' ').join('+');
-      console.log(search[1]);
       window.open(`https://www.youtube.com/results?search_query=${search[1]}`,`_blank`);
     };
   });
