@@ -27,18 +27,37 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
-    const menu = document.querySelector('.menu');
+    // const menu = document.querySelector('.menu');
+    // function addHighlight(e){
+    //     console.log(e.target.parentElement.classList);
+    //     let currHighlight = document.querySelector('.highlight');
+    //     if (currHighlight) currHighlight.classList.remove('highlight');
+    //     e.target.classList.add('highlight');
+    // };
+      
+    // [...menu.children].forEach( child => {
+    //   child.addEventListener('mouseover', addHighlight);
+    // });
 
-    function addHighlight(e){
-      console.log(e.target.parentElement.classList);
-      let currHighlight = document.querySelector('.highlight');
-      if (currHighlight) currHighlight.classList.remove('highlight');
-      e.target.classList.add('highlight');
-    };
+    //video notes
+  const triggers = document.querySelectorAll('a');
+  const highlight = document.createElement('span');
+  highlight.classList.add('highlight');
+  document.body.appendChild(highlight);
 
-    [...menu.children].forEach( child => {
-      child.addEventListener('mouseover', addHighlight);
-    });
+  function highlightLink(){
+    const linkCoords = this.getBoundingClientRect();
+    const top = linkCoords.top + window.scrollY;
+    const left = linkCoords.left + window.scrollX;
+    s
+
+    highlight.style.width = `${linkCoords.width}px`;
+    highlight.style.height = `${linkCoords.height}px`;
+    highlight.style.transform = `translate(${left}px, ${top}px)`;
+  }
+
+  triggers.forEach(trigger => trigger.addEventListener('mouseenter', highlightLink));
+
   </script>
 </body>
 </html>
