@@ -51,6 +51,14 @@
     const left = linkCoords.left + window.scrollX;
     s
 
+    const coords = {
+    width: linkCoords.width,
+    height: linkCoords.height,
+    top: linkCoords.top + window.scrollY,
+    left: linkCoords.left + window.scrollX
+    };
+    
+
     highlight.style.width = `${linkCoords.width}px`;
     highlight.style.height = `${linkCoords.height}px`;
     highlight.style.transform = `translate(${left}px, ${top}px)`;
