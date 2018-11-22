@@ -27,6 +27,18 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    const menu = document.querySelector('.menu');
+
+    function addHighlight(e){
+      console.log(e.target.parentElement.classList);
+      let currHighlight = document.querySelector('.highlight');
+      if (currHighlight) currHighlight.classList.remove('highlight');
+      e.target.classList.add('highlight');
+    };
+
+    [...menu.children].forEach( child => {
+      child.addEventListener('mouseover', addHighlight);
+    });
   </script>
 </body>
 </html>
