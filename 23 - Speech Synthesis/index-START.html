@@ -35,6 +35,19 @@
   const options = document.querySelectorAll('[type="range"], [name="text"]');
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
+  msg.text = document.querySelector('[name="text"]').value;
+
+  function populateVoices(){
+    voices = speechSynthesis.getVoices().filter(voice => voice.lang.slice(0,2) === 'en');
+    voicesDropdown.innerHTML = voices.map(voice => (
+      `<option value='${voice.name}'>${voice.name} (${voice.lang})</option>`
+    )).join('');
+  }
+
+  function changeVoice(e){
+    msg.voice = voices.find(voice => voice.name === e.target.value);
+    console.log(msg.voice.name);
+  }
 
   function updateMsg(e){
     if (e.target.name === 'rate') msg.rate = e.target.value;
@@ -42,12 +55,17 @@
     else msg.text = e.target.value;
   }
 
-  function changeVoice(e){
-    console.log('test');
+  function toggleSpeech(speak = true){
+    speechSynthesis.resume(msg);
   }
 
+
+  speechSynthesis.addEventListener('voiceschanged', populateVoices)
   options.forEach(option => option.addEventListener('input', updateMsg));
-  voicesDropdown.addEventListener('onchange', changeVoice);
+  voicesDropdown.addEventListener('change', changeVoice);
+  speakButton.addEventListener('click', toggleSpeech);
+  stopButton.addEventListener('click', toggleSpeech(false));
+
 
 </script>
 
