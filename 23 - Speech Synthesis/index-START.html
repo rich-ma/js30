@@ -35,6 +35,20 @@
   const options = document.querySelectorAll('[type="range"], [name="text"]');
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
+
+  function updateMsg(e){
+    if (e.target.name === 'rate') msg.rate = e.target.value;
+    else if (e.target.name === 'pitch') msg.pitch = e.target.value;
+    else msg.text = e.target.value;
+  }
+
+  function changeVoice(e){
+    console.log('test');
+  }
+
+  options.forEach(option => option.addEventListener('input', updateMsg));
+  voicesDropdown.addEventListener('onchange', changeVoice);
+
 </script>
 
 </body>
