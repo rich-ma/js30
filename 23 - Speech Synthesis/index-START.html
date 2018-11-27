@@ -50,21 +50,24 @@
   }
 
   function updateMsg(e){
-    if (e.target.name === 'rate') msg.rate = e.target.value;
-    else if (e.target.name === 'pitch') msg.pitch = e.target.value;
-    else msg.text = e.target.value;
+    msg[this.name] = this.value;
+    // if (e.target.name === 'rate') msg.rate = e.target.value;
+    // else if (e.target.name === 'pitch') msg.pitch = e.target.value;
+    // else msg.text = e.target.value;
   }
 
   function toggleSpeech(speak = true){
-    speechSynthesis.resume(msg);
+    speechSynthesis.cancel();
+    if (speak) speechSynthesis.speak(msg);
   }
 
 
   speechSynthesis.addEventListener('voiceschanged', populateVoices)
   options.forEach(option => option.addEventListener('input', updateMsg));
   voicesDropdown.addEventListener('change', changeVoice);
+
   speakButton.addEventListener('click', toggleSpeech);
-  stopButton.addEventListener('click', toggleSpeech(false));
+  stopButton.addEventListener('click', () => toggleSpeech(false));
 
 
 </script>
